@@ -80,12 +80,16 @@ function buildElements(chosenImage){
 
   var buttonLabel = document.createElement('label');
   buttonLabel.innerHTML = 'Select';
+  var imageBlock = document.createElement('section');
+  imageBlock.setAttribute('id', 'imageblock');
+
   var radioButton = document.createElement('input');
   radioButton.setAttribute('type', 'radio');
   radioButton.setAttribute('value', chosenImage.alt);
-  parentElement.appendChild(imageElement);
-  parentElement.appendChild(buttonLabel);
-  parentElement.appendChild(radioButton);
+  imageBlock.appendChild(imageElement);
+  imageBlock.appendChild(radioButton);
+  imageBlock.appendChild(buttonLabel);
+  parentElement.appendChild(imageBlock);
 }
 
 function getRandomNumber(max) {

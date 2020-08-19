@@ -16,16 +16,19 @@ h1 {
   color: white;
 }
 
-img {
-  width: 20%;
-  margin: 5px;
-  display: inline;
-}
-
 #ul{
   width: fit-content;
   margin: 10px;
   padding: 10px;
   background-color: thistle;
+}
+
+#imageblock{
+  display: inline;
+}
+
+#imageblock>img{
+  width: 20%;
+  margin: 5px;
 }
 
