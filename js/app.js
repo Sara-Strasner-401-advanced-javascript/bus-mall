@@ -8,13 +8,12 @@ var parentElement = document.getElementById('products');
 var finalList = document.getElementById('ul');
 var productArray = [];
 var totalClicks = 0;
-var maxClicks = 25;
+var maxClicks = 5;
 var uniqueImageArray = [];
 var percentageArray = [];
 var productName = [];
 
-// Product array
-
+// Product Constructor function
 function Product (name){
   this.title = `${name}`.slice(0,-4);
   // slice function from StackOverflow: https://stackoverflow.com/questions/952924/javascript-chop-slice-trim-off-last-character-in-string
@@ -27,33 +26,48 @@ function Product (name){
   productArray.push(this);
 }
 
-new Product('bag.jpg');
-new Product('banana.jpg');
-new Product('bathroom.jpg');
-new Product('boots.jpg');
-new Product('breakfast.jpg');
-new Product('bubblegum.jpg');
-new Product('chair.jpg');
-new Product('cthulhu.jpg');
-new Product('dog-duck.jpg');
-new Product('dragon.jpg');
-new Product('pen.jpg');
-new Product('pet-sweep.jpg');
-new Product('scissors.jpg');
-new Product('shark.jpg');
-new Product('sweep.png');
-new Product('tauntaun.jpg');
-new Product('unicorn.jpg');
-new Product('usb.gif');
-new Product('water-can.jpg');
-new Product('wine-glass.jpg');
+// JSON function to create items in local storage
+function checkLocalStorage() {
+  if (localStorage.getItem('items') === null) {
+    createItems();
+  } else {
+    var getproductArray = localStorage.getItem('items');
+    var parseItem = JSON.parse(getproductArray);
+    productArray = parseItem;
+  }
+}
+checkLocalStorage();
 
-
+// adding new products to the array
+function createItems() {
+  new Product('bag.jpg');
+  new Product('banana.jpg');
+  new Product('bathroom.jpg');
+  new Product('boots.jpg');
+  new Product('breakfast.jpg');
+  new Product('bubblegum.jpg');
+  new Product('chair.jpg');
+  new Product('cthulhu.jpg');
+  new Product('dog-duck.jpg');
+  new Product('dragon.jpg');
+  new Product('pen.jpg');
+  new Product('pet-sweep.jpg');
+  new Product('scissors.jpg');
+  new Product('shark.jpg');
+  new Product('sweep.png');
+  new Product('tauntaun.jpg');
+  new Product('unicorn.jpg');
+  new Product('usb.gif');
+  new Product('water-can.jpg');
+  new Product('wine-glass.jpg');
+}
+// Array of Product names to be used as labels in chart
 for (var j = 0; j < productArray.length; j++){
   productName.push(productArray[j].title);
 }
-console.log(productName);
+// console.log(productName);
 
+//Image generating function
 function getRandomImage(){
   var randomIndex = getRandomNumber(productArray.length);
   while(uniqueImageArray.includes(randomIndex)){
@@ -67,10 +81,19 @@ function getRandomImage(){
 
   var chosenImage = productArray[randomIndex];
   chosenImage.shown++;
-
   buildElements(chosenImage);
+  console.log(chosenImage);
 }
 
+
+// initially renders 3 images when page loads
+getRandomImage();
+getRandomImage();
+getRandomImage();
+
+
+
+// Function to render elements to the DOM
 function buildElements(chosenImage){
 
   var imageElement = document.createElement('img');
@@ -99,45 +122,43 @@ function getRandomNumber(max) {
 function handleClick(event){
   totalClicks++;
   // console.log('The total clicks were: '+ totalClicks);
-  // console.log('the event.target', event.target.value);
+  console.log('the event.target', event.target.value);
   var alt = event.target.value;
 
   for(var i=0; i<productArray.length; i++){
     if(alt === productArray[i].alt){
       productArray[i].clicks++;
-      productArray[i].shown++;
     }
   }
 
   parentElement.innerHTML = '';
+  var jsonproductArray = JSON.stringify(productArray);
+  localStorage.setItem('items', jsonproductArray);
   getRandomImage();
   getRandomImage();
   getRandomImage();
+
   if (totalClicks>=maxClicks) {
+    var jsonArray = JSON.stringify(productArray);
     parentElement.removeEventListener('click', handleClick);
+    localStorage.setItem('items', jsonArray);
     product();
     chart();
     console.log('This is the percentage: '+ percentageArray);
     document.getElementById('ul').style.display = 'block';
-
     for (var j = 0; j < productArray.length; j++){
       var li = document.createElement('li');
       li.textContent = productArray[j].title + ' had ' + productArray[j].clicks + ' votes and was shown ' + productArray[j].shown + ' times.';
       finalList.appendChild(li);
+      console.log('here is the unique image array: ' + uniqueImageArray);
     }
   }
 }
 
-
-
 parentElement.addEventListener('click', handleClick);
 
-getRandomImage();
-getRandomImage();
-getRandomImage();
 
-
-// // PRODUCT FUNCTION BELOW
+// // PRODUCT FUNCTION BELOW: divides clicks by times shown
 
 function product (){
   for (var i = 0; i < productArray.length; i++) {
@@ -150,7 +171,7 @@ function product (){
 }
 
 
-// Rendering chart
+// Rendering the chart
 
 function chart() {
   console.log(percentageArray);
