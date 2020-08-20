@@ -145,7 +145,6 @@ function handleClick(event){
     product();
     chart();
     console.log('This is the percentage: '+ percentageArray);
-    document.getElementById('ul').style.display = 'block';
     for (var j = 0; j < productArray.length; j++){
       var li = document.createElement('li');
       li.textContent = productArray[j].title + ' had ' + productArray[j].clicks + ' votes and was shown ' + productArray[j].shown + ' times.';

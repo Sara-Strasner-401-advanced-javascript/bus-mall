@@ -10,3 +10,4 @@ Market analysis for product popularity among a variety of potential products for
 - Capitalization code from: https://paulund.co.uk/how-to-capitalize-the-first-letter-of-a-string-in-javascript
 
 ## Reflections and Comments
+Since we are not storing personally identifiable information about individial respondents, it is possible for people to vote more than once, potentially skewing the data. 
