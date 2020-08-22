@@ -19,7 +19,7 @@ function Product (name){
   this.title = this.title.charAt(0).toUpperCase() + this.title.slice(1);
   // capitaliation code from: https://paulund.co.uk/how-to-capitalize-the-first-letter-of-a-string-in-javascript
   this.alt = `${name}`;
-  this.filepath = `img/${name}`;
+  this.filepath = `../img/${name}`;
   this.clicks = 0;
   this.shown = 0;
   productArray.push(this);
@@ -39,26 +39,26 @@ checkLocalStorage();
 
 // adding new products to the array
 function createItems() {
-  new Product('bag.jpg');
-  new Product('banana.jpg');
-  new Product('bathroom.jpg');
-  new Product('boots.jpg');
-  new Product('breakfast.jpg');
-  new Product('bubblegum.jpg');
-  new Product('chair.jpg');
-  new Product('cthulhu.jpg');
-  new Product('dog-duck.jpg');
-  new Product('dragon.jpg');
-  new Product('pen.jpg');
-  new Product('pet-sweep.jpg');
-  new Product('scissors.jpg');
-  new Product('shark.jpg');
+  new Product('bag.JPG');
+  new Product('banana.JPG');
+  new Product('bathroom.JPG');
+  new Product('boots.JPG');
+  new Product('breakfast.JPG');
+  new Product('bubblegum.JPG');
+  new Product('chair.JPG');
+  new Product('cthulhu.JPG');
+  new Product('dog-duck.JPG');
+  new Product('dragon.JPG');
+  new Product('pen.JPG');
+  new Product('pet-sweep.JPG');
+  new Product('scissors.JPG');
+  new Product('shark.JPG');
   new Product('sweep.png');
-  new Product('tauntaun.jpg');
-  new Product('unicorn.jpg');
+  new Product('tauntaun.JPG');
+  new Product('unicorn.JPG');
   new Product('usb.gif');
-  new Product('water-can.jpg');
-  new Product('wine-glass.jpg');
+  new Product('water-can.JPG');
+  new Product('wine-glass.JPG');
 }
 // Array of Product names to be used as labels in chart
 for (var j = 0; j < productArray.length; j++){
