@@ -1,7 +1,6 @@
 'use strict';
-
+//hides ul. Without this code, the background box for the ul appears as a placeholder when the page renders
 document.getElementById('ul').style.display = 'none';
-
 
 // Global Variables
 var parentElement = document.getElementById('products');
@@ -67,7 +66,7 @@ for (var j = 0; j < productArray.length; j++){
 }
 // console.log(productName);
 
-//Image generating function
+//Image generating function: pulls a new image from the array and verifies that that image has not been shown in the last 6 images to avoid repetition and increments shown count on displayed images
 function getRandomImage(){
   var randomIndex = getRandomNumber(productArray.length);
   while(uniqueImageArray.includes(randomIndex)){
@@ -115,13 +114,14 @@ function buildElements(chosenImage){
   parentElement.appendChild(imageBlock);
 }
 
+// function used on line 71 to generate random image
 function getRandomNumber(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+// event handler function: increments click count on chosen image(128-132), sets items to local storage (135-136), generates 3 new images (137-139), and if the user is out of submissions: removes event listener, and renders the ul and chart.
 function handleClick(event){
   totalClicks++;
-  // console.log('The total clicks were: '+ totalClicks);
   console.log('the event.target', event.target.value);
   var alt = event.target.value;
 
@@ -159,7 +159,6 @@ parentElement.addEventListener('click', handleClick);
 
 
 // // PRODUCT FUNCTION BELOW: divides clicks by times shown
-
 function product (){
   for (var i = 0; i < productArray.length; i++) {
     if (parseInt(productArray[i].clicks) === 0 || parseInt(productArray[i].shown) === 0 ) {
@@ -172,7 +171,6 @@ function product (){
 
 
 // Rendering the chart
-
 function chart() {
   console.log(percentageArray);
   var ctx = document.getElementById('myChart').getContext('2d');
