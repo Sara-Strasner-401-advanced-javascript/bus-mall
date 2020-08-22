@@ -19,7 +19,7 @@ function Product (name){
   this.title = this.title.charAt(0).toUpperCase() + this.title.slice(1);
   // capitaliation code from: https://paulund.co.uk/how-to-capitalize-the-first-letter-of-a-string-in-javascript
   this.alt = `${name}`;
-  this.filepath = `https://sarastrasner.github.io/img/${name}`;
+  this.filepath = `https://github.com/sarastrasner/bus-mall/blob/master/img/${name}`;
   this.clicks = 0;
   this.shown = 0;
   productArray.push(this);
